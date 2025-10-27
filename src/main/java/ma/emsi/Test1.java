@@ -24,7 +24,7 @@ public class Test1 {
 
 
 
-        String question = "Superficie de la France ? .";
+        String question = "Comment s'appelle le chat de Pierre ? ";
 
         System.out.println(" Question posée au modèle : " + question);
 
