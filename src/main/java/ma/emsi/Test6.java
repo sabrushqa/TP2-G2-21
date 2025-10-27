@@ -6,27 +6,23 @@ import dev.langchain4j.service.AiServices;
 public class Test6 {
 
     public static void main(String[] args) {
-        // --- Configuration du Logging ---
-        // Les logs détaillés des requêtes et réponses LLM seront affichés pour l'analyse.
-        // Assurez-vous d'avoir configuré logback/slf4j dans votre projet pour voir les logs.
-
-        // 1️⃣ Création directe du modèle Gemini
+    
+        
         GoogleAiGeminiChatModel model = GoogleAiGeminiChatModel.builder()
-                // ATTENTION: Utiliser la variable d'environnement standard GEMINI_KEY
+        
                 .apiKey(System.getenv("GEMINI"))
                 .modelName("gemini-2.0-flash")
                 // Activation du logging pour analyser l'utilisation de l'outil
                 .logRequestsAndResponses(true)
                 .build();
 
-        // 2️⃣ Création de l’assistant avec l’outil météo
         // L'appel à .tools(new MeteoTool()) rend la méthode meteo() accessible au LLM.
         AssistantMeteo assistant = AiServices.builder(AssistantMeteo.class)
                 .chatModel(model)
                 .tools(new MeteoTool())  // Ajout de l'outil MeteoTool
                 .build();
 
-        // 3️⃣ Exécution des tests
+     
 
         // Test 1 : Météo d'une vraie ville (devrait utiliser l'outil)
         System.out.println("---- Test 1 : Météo d'une vraie ville (Paris) ----");
